@@ -1,0 +1,19 @@
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Crear dos servidores
+      ionoscloudsdk.ionoscloud.server:
+          datacenter: AnsibleDemo
+          name: ansible_server%02d
+          count: 2
+          cores: 1
+          ram: 1024
+          image: 28d0fa34-927f-11ee-8008-6202af74e858
+          image_password: secretpassword
+          location: us/las
+          assign_public_ip: true
+          remove_boot_volume: true
+          state: present
+      register: ionos
